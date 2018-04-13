@@ -1,0 +1,186 @@
+---------------------
+Email stuff: 
+
+imap-mail.outlook.com
+leigh.mathieson@pro-quest.co.uk
+Port 993
+
+smtp out
+smtp-mail.outlook.com
+port 587
+
+-----------------------
+Open Terminal - cntrl alt t
+Close Terminal - cntrl shift W  (window)  cntrl shift Q  (quit terminal)
+Paste into terminal - cntrl shift v
+navigate to root folder:  cd /
+navigate to home/user  directory cd ~
+
+Desktop - cntrl alt d
+Close window - cntrl q
+
+Help on anything - man   (eg:  man rm)
+
+to review page at a time:  | less
+
+Make folder or dir - mkdir
+move (or rename) a folder - mv
+Remove an empty directory: rmdir [dirname]     //won't work if files still in it
+Remove a non emplty directrory   rm -fr  [dirname]    //the f is force (ignore the non empty nature) the r is recursivle down the tree
+Delete a file:   rm [filename]
+
+To find a word in a file use: grep -r word      //r is recursively sub-directories
+
+for permissions (can't edit root directory folders, use   sudo  (super user do - eg:  sudo mv /home/user/oldname /home/user/newname)
+
+info on partitions  -  sudo parted -l  (gives filesystem)  or sudo fdisk-l
+
+In package manager (if you don't have one install one!) find  bash-completion    //can hit TAB and it auto-completes
+
+To create a new file and add some text:   echo "Earth's Moon" >> locations.txt    //new txt file containing: Earth's Moon
+
+----------------------------------
+NodeJS
+
+To check curent version install   node -v
+
+To install the best Node version manager:  
+ sudo npm cache clean -f
+ sudo npm install -g n install -g N   (N is a node manager)  
+ 
+to list Node versions:  N ls
+
+to install preferred version: sudo N install 9.2.2   //or whichever required
+
+Search for Nodejs modules - personally I still use npmjs.com gui works OK, then install once found via terminal
+
+To list all globally installed packages (this is global packages, depth=0 is just that package, depth =1, depth=2 etc dependent packages.
+npm list -g --depth 0
+
+To install multiple packages as dependencies: npm i -S Mocha Chai
+To install multiple packages as dev dependencies: npm i -D Mocha Chai
+
+----------------------------------
+
+
+MongoDB - need to be in the directory root  (cd /)  and mkdir  /data/db  -  must be XFS file (for WiredTiger storage engine) - if on EXT4
+
+-----------------------------------------------
+To change Storage Engine in Mongo DB on Ubuntu Linux from WiredTiger to MMAPv1 (or vice versa)
+
+Assuming you don't have data that needs backing up, as you've run into this issue you probably have an EXT4 file system that WiredTiger struggles with, rather than XFS   (if you do then probably export/ back up the data first then re-import) to check your current filesystem use:
+sudo parted -l
+
+First rename the folder /data/db  which contains the old WireTiger storage data  (suggest rename the old folder to   /dataWiredT so you keep it if you ever revert)
+sudo mv /data /dataWiredT
+
+create a new  /data/db
+mkdir /data
+mkdir /data/db  
+
+you can try to alter Storage Engine now by:
+mongod --storageEngine=mmapv1 --dbpath /data/db
+
+More info here on how to Change Storage Engine  https://docs.mongodb.com/manual/tutorial/change-standalone-wiredtiger/   (for MVAPP use reverse as you've just done)
+
+
+You may hit a permission issue 'lock' on your new /data/db read only folder then use:
+sudo chmod -R go+w /data/db    to alter permissions  
+
+(note that will allow anyone to write - if production DB consider security - some more info here:  https://stackoverflow.com/questions/42446931/mongodb-exception-in-initandlisten-20-attempted-to-create-a-lock-file-on-a-rea 
+
+Note, there may be usual Warnings about Access Control & Read/ Write access not restricted to fix once started MongoDB
+
+----------------------------------------------
+MongoDB:
+
+to start db:  mongod
+to start shell:  mongo
+
+db.createUser({user: "dbadmin", pwd: "Brandon45$$", roles: ["readWriteAnyDatabase", "dbAdminAnyDatabase", "clusterAdmin"]})
+
+Shut down server
+use admin
+db.shutdownServer()
+
+To authenticate onto admin:
+> use admin
+> db.auth("useradmin", "Brandon45$$")    //or dbadmin
+
+to start server requiring authentication:  mongod --auth --port 27017 --dbpath /data/db
+
+
+----------------------------------------------
+VS Code
+Mocha - Command Palette (F1) Mocha run All Tests
+
+-----------------------------------------------
+
+Git / github
+
+To start a project from scratch, create the folder on Github, then git clone the repo, then add files to that repo and add/ commit/ push back up
+
+If you use Git init in the folder, it will be a different repo from the Github one, in which case you have to merge them with different histories using:
+git pull <remote repo> --allow-unrelated-histories
+
+Initialize a repo:
+Git init
+
+git pull  -  brings down remote changes into local and merges
+Git fetch brings down changes, but then you manually need to merge them
+Git clone you use once, or if you mess up your local directory
+
+To add changes to staging I do:
+git add --all
+
+To commit I do:
+git commit --all
+
+to push:
+git push remote origin master https://github.com/leigh-1/leetcode.git  ?
+or try:
+git remote add origin https://github.com/leigh-1/leetcode.git
+git push -u origin master     // -u remembers settings so you can just do git push next time
+
+To upload to a repo on Github, ensure there is an empty folder without a readme (add it later) then do:
+  git add somefile.txt
+  git add *
+  git add '*.txt'
+  git commit -m "Adding new files message goes here"
+  git push
+  git log
+  git log --summary
+  git remote add origin https://github.com/try-git/try_git.git
+  git push -u origin master     // -u remembers your settings so can just do   git push  next time
+  git pull origin master
+  git diff HEAD
+  git diff --staged   // git diff with the --staged option to see the changes you just staged
+  git reset octofamily/octodog.txt  // You can unstage files by using the git reset command
+  git checkout -- octocat.txt    // Files can be changed back to how they were at the last commit by using the command: git checkout -- <target>. Go ahead and get rid of all the changes since the last commit for octocat.txt
+  git branch clean_up
+  git checkout clean_up
+  git rm '*.txt'
+  git commit -m "Remove all the cats"
+  git checkout master
+  git merge clean_up
+  git branch -d clean_up    // -d deletes a branch
+    git push
+
+If created submodules in error, or submodules with changes uncomitted you'll see folders you can't access and using:  git diff   shows +  and dirty
+in the root folder of the module use: 
+
+Remove the whole module from local cache  (back it up somewhere first)  then use:
+git submodule update
+git push
+
+should work, if not try: git submodule foreach --recursive git checkout
+git commit --all
+git push
+
+https://github.com/leigh-1/leetcode.git
+
+------------------------------------------------
+
+
+  
+
