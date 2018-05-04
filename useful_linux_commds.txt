@@ -1,14 +1,3 @@
----------------------
-Email stuff: 
-
-imap-mail.outlook.com
-leigh.mathieson@pro-quest.co.uk
-Port 993
-
-smtp out
-smtp-mail.outlook.com
-port 587
-
 -----------------------
 Open Terminal - cntrl alt t
 Close Terminal - cntrl shift W  (window)  cntrl shift Q  (quit terminal)
