@@ -168,6 +168,8 @@ git push
 
 https://github.com/leigh-1/leetcode.git
 
+Toi change the source url (I changed username):  git remote set-url origin https://github.com/leighmathieson/codewars.git
+
 ------------------------------------------------
 
 
