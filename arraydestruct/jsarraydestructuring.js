@@ -7,4 +7,4 @@ arr.forEach((element, index) => {
   }
 });
 
-console.log(arr);
+console.log(arr); // ['one', 'two', 'three', 'four', 'five', 'six']
