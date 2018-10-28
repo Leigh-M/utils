@@ -13,10 +13,10 @@ rl.on('line', (line) => {
 });
 
 rl.on('close', () => {
-  const max3Values = [];
+  const maxValues = [];
   data.sort((a, b) => b[3] - a[3]);
   for (let i = 0; i < 3; i++) {
-    (max3Values.push(data[i]));
+    (maxValues.push(data[i]));
   }
 });
 
