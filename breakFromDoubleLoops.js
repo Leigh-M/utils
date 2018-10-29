@@ -1,9 +1,9 @@
-const  a = [1, 2, 3, 4, 5, 6];
+const a = [1, 2, 3, 4, 5, 6];
 const b = [7, 8, 9, 10, 11, 12];
 let breakLoopCheck2 = false;
 
-let res = function() {
-  for (i = 0; i < a.length; i++) {
+const res = () => {
+  for (let i = 0; i < a.length; i++) {
     console.log(a[i]);
     for (let j = 0; j < b.length; j++) {
       console.log(b[j]);
@@ -16,6 +16,6 @@ let res = function() {
       break;
     }
   }
-}
+};
 
 res();

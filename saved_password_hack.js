@@ -1,0 +1,1 @@
+https://digiwonk.gadgethacks.com/how-to/hack-any-password-any-site-with-javascript-293621/
