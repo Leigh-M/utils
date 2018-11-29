@@ -168,7 +168,15 @@ git push
 
 https://github.com/leigh-1/leetcode.git
 
-Toi change the source url (I changed username):  git remote set-url origin https://github.com/leighmathieson/codewars.git
+To change the source url (I changed username):  git remote set-url origin https://github.com/leighmathieson/codewars.git
+
+git log   -> check overview of commits
+git log --stat     -> slightly more detailed view
+git log -p  ||  git log --patch  ||  git log -p -2 -> lists detail of all last 2 commits 
+git log --pretty=oneline   -> one line view
+git log --pretty=format:"%h - %an, %ar : %s"  -> specify own format (many more options avail than these)
+git log --graph  -> can see commit branches and 
+git log --pretty=format:"%h %s" --graph  -> using graph with pretty
 
 ------------------------------------------------
 
