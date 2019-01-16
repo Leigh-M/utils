@@ -3,7 +3,7 @@ function deepCopy(p, c) {
   for (const [index, value] of p.entries()) {
     if (Array.isArray(value)) {
       c[index] = [];
-      deepc(value, c[index]);
+      deepCopy(value, c[index]);
     } else c.push(value);
   }
   return c;
