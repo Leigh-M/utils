@@ -35,16 +35,17 @@ To check curent version install   node -v
 
 To install the best Node version manager:  
  sudo npm cache clean -f
- sudo npm install -g n install -g N   (N is a node manager)  
+ sudo npm install -g n install -g   (is a node manager)  
  
-to list Node versions:  N ls
+to list Node versions:  n ls
 
-to install preferred version: sudo N install 9.2.2   //or whichever required
+to install preferred version: sudo n install 9.2.2   //or whichever required
 
 Search for Nodejs modules - personally I still use npmjs.com gui works OK, then install once found via terminal
 
 To list all globally installed packages (this is global packages, depth=0 is just that package, depth =1, depth=2 etc dependent packages.
 npm list -g --depth 0
+npm ls --depth=0   -> just locally installed
 
 To install multiple packages as dependencies: npm i -S Mocha Chai
 To install multiple packages as dev dependencies: npm i -D Mocha Chai
@@ -53,6 +54,12 @@ To install multiple packages as dev dependencies: npm i -D Mocha Chai
 
 
 MongoDB - need to be in the directory root  (cd /)  and mkdir  /data/db  -  must be XFS file (for WiredTiger storage engine) - if on EXT4
+To change from MVAPP just delete all of the files in /data/db it will rebuild them with wiredTiger
+
+change storage engine to wiredTiger (google it)
+
+mongod -> starts DB
+mongo -> starts the shell
 
 -----------------------------------------------
 To change Storage Engine in Mongo DB on Ubuntu Linux from WiredTiger to MMAPv1 (or vice versa)
@@ -116,8 +123,17 @@ Initialize a repo:
 Git init
 
 git pull  -  brings down remote changes into local and merges
+git pull origin master
 Git fetch brings down changes, but then you manually need to merge them
 Git clone you use once, or if you mess up your local directory
+
+ -> checkout a new branch:
+git checkout -b cool-new-feature  ->  git branch cool-new-feature  &&  git checkout cool-new-feature
+
+git merge cool-feature master   ->  to merge back into master with no conflicts
+
+
+
 
 To add changes to staging I do:
 git add --all
@@ -177,6 +193,18 @@ git log --pretty=oneline   -> one line view
 git log --pretty=format:"%h - %an, %ar : %s"  -> specify own format (many more options avail than these)
 git log --graph  -> can see commit branches and 
 git log --pretty=format:"%h %s" --graph  -> using graph with pretty
+git log --since=2.weeks   -> since
+git log --before="2008-11-01"    -> before
+git log -S function_name    -> find any references of changes by function name
+git commit --amend   -> change last commit message  (can be used to change actual diffs also, need to read around that)
+ rebasing is where need to change commits or roll small changes into a larger commit - only do with local commits though not with remote
+
+cntrl-z to quit the git log
+
+git branch  -> git branch --list
+
+--> https://www.atlassian.com/git/tutorials/using-branches
+
 
 ------------------------------------------------
 
