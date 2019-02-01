@@ -1,17 +1,16 @@
 function hashToInteger(string, arr) {
-  let H = 31;
+  const H = 31;
   let total = 0;
   for (let i = 0; i < string.length; ++i) {
-    total +=H * total + string.charCodeAt(i);
-    total = total % arr.length;
+    total += (H * total) + string.charCodeAt(i);
+    total %= arr.length;
   }
-  return parseInt(total);
+  return parseInt(total, 10);
 }
 
 // opted for linear probing over separate chaining for collisions -> next key avail in array
 function setKey(str, arry) {
-  let key = hashToInteger(str, arry)
-  let index = 0;
+  let key = hashToInteger(str, arry);
   if (arry[key] === undefined) {
     arry[key] = key;
   } else {
