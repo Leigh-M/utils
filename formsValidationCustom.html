@@ -1,59 +1,56 @@
 <html>
-
 <head>
+
 <style>
-input:focus:invalid,
-textarea:focus:invalid,
-select:focus:invalid {
-  color: #c33;
-  border-color: #c33;
-}
+  input:focus:invalid,
+  textarea:focus:invalid,
+  select:focus:invalid {
+    color: #c33;
+    border-color: #c33;
+  }
 
-input:focus:invalid:focus,
-textarea:focus:invalid:focus,
-select:focus:invalid:focus {
-  border-color: #c33;
-  -webkit-box-shadow: 0 0 6px #fcc;
-     -moz-box-shadow: 0 0 6px #fcc;
-          box-shadow: 0 0 6px #fcc;
-}
+  input:focus:invalid:focus,
+  textarea:focus:invalid:focus,
+  select:focus:invalid:focus {
+    border-color: #c33;
+    -webkit-box-shadow: 0 0 6px #fcc;
+      -moz-box-shadow: 0 0 6px #fcc;
+            box-shadow: 0 0 6px #fcc;
+  }
 
-input:invalid,
-textarea:invalid,
-select:invalid {
-  border-bottom: 1px solid #c33;
-}
+  input:invalid,
+  textarea:invalid,
+  select:invalid {
+    border-bottom: 1px solid #c33;
+  }
 
-input:valid + .invalid /* Adjacent sibling selector */ {
-  visibility: hidden;
-}
+  input:valid + .invalid /* Adjacent sibling selector */ {
+    visibility: hidden;
+  }
 
-input:invalid + .invalid {
-  visibility: visible;
-}
+  input:invalid + .invalid {
+    visibility: visible;
+  }
 
-input:required {
-  border-left: 4px solid #c33;
-}
+  input:required {
+    border-left: 4px solid #c33;
+  }
 
-input:valid {
-  border-bottom: transparent;
-}
+  input:valid {
+    border-bottom: transparent;
+  }
 
-.invalid {
-  color: #999;
-}
+  .invalid {
+    color: #999;
+  }
 
-.hide {
-  display: none !important;
-}
-
+  .hide {
+    display: none !important;
+  }
 </style>
-
 </head>
 
 <body>
-
 <form id="change-email-form" name="change-email-form">
   <input type="text" 
     name="username" 
@@ -93,88 +90,88 @@ input:valid {
 </form>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function(event) {
-      // Create a container for validation rule names.
-      var ruleNames = [];
-      var forEach = Array.prototype.forEach;
-      
-      var ruleElements = document.querySelectorAll('[data-rule]');
-      
-      forEach.call(ruleElements, function(element) {
-        var ruleName = element.getAttribute('data-rule');
-        if (ruleNames.indexOf(ruleName) === -1) {
-            ruleNames.push(ruleName);
-        }
-      });
-      
-      var validate = function() {
-          var messageElements = document.querySelectorAll(".validation-messages span");
-          
-          forEach.call(messageElements, function(element){
-            element.classList.add('hide');
-          });
+  document.addEventListener('DOMContentLoaded', function(event) {
+    // Create a container for validation rule names.
+    var ruleNames = [];
+    var forEach = Array.prototype.forEach;
     
-          validateAgainstCustomRules();
+    var ruleElements = document.querySelectorAll('[data-rule]');
     
-          document.getElementById('change-email-form').checkValidity();
-      };
-      
-      var validationFail = function(e) {
-          var element, validity;
-          
-          element = e.currentTarget;
-          validity = element.validity;
-      
-          if (!validity.valid) {
-            ruleNames.forEach(function(ruleName) {
-              checkRule(validity, ruleName, element);
-            });
-      
-            e.preventDefault();
-          }
-      };
-        
-      var checkRule = function(state, ruleName, element) {      
-        if (state[ruleName]) {
-          
-          var rules = element
-                            .nextElementSibling
-                            .querySelectorAll('[data-rule="' + ruleName + '"]');
-          
-          forEach.call(rules, function(rule){
-            rule.classList.remove('hide');
-          });
-        }
-      };
-      
-      var validateAgainstPattern = function(element, pattern, ruleName) {
-      
-          if (element.value.match(pattern)) {
-            element.setCustomValidity('invalid');
-    
-            element.nextElementSibling
-                   .querySelector('[data-rule="' + ruleName + '"]')
-                   .classList
-                   .remove('hide');
-          }
-          else {
-            element.setCustomValidity('');
-          }
-      };
-      
-      var validateAgainstCustomRules = function() {
-          validateAgainstPattern(document.getElementById('email'), /@aol.com/i, 'isAol');
-      };
-      
-      var inputElements = document.querySelectorAll('input:not(button)');
-      forEach.call(inputElements, function(input) {
-          input.oninvalid = validationFail;
-          input.onblur = validate;
-      });
-      
-      document.getElementById('login-button').addEventListener('click', validate, false);
+    forEach.call(ruleElements, function(element) {
+      var ruleName = element.getAttribute('data-rule');
+      if (ruleNames.indexOf(ruleName) === -1) {
+          ruleNames.push(ruleName);
+      }
     });
-    </script>
+    
+    var validate = function() {
+        var messageElements = document.querySelectorAll(".validation-messages span");
+        
+        forEach.call(messageElements, function(element){
+          element.classList.add('hide');
+        });
+  
+        validateAgainstCustomRules();
+  
+        document.getElementById('change-email-form').checkValidity();
+    };
+    
+    var validationFail = function(e) {
+        var element, validity;
+        
+        element = e.currentTarget;
+        validity = element.validity;
+    
+        if (!validity.valid) {
+          ruleNames.forEach(function(ruleName) {
+            checkRule(validity, ruleName, element);
+          });
+    
+          e.preventDefault();
+        }
+    };
+      
+    var checkRule = function(state, ruleName, element) {      
+      if (state[ruleName]) {
+        
+        var rules = element
+                          .nextElementSibling
+                          .querySelectorAll('[data-rule="' + ruleName + '"]');
+        
+        forEach.call(rules, function(rule){
+          rule.classList.remove('hide');
+        });
+      }
+    };
+    
+    var validateAgainstPattern = function(element, pattern, ruleName) {
+    
+        if (element.value.match(pattern)) {
+          element.setCustomValidity('invalid');
+  
+          element.nextElementSibling
+                  .querySelector('[data-rule="' + ruleName + '"]')
+                  .classList
+                  .remove('hide');
+        }
+        else {
+          element.setCustomValidity('');
+        }
+    };
+    
+    var validateAgainstCustomRules = function() {
+        validateAgainstPattern(document.getElementById('email'), /@aol.com/i, 'isAol');
+    };
+    
+    var inputElements = document.querySelectorAll('input:not(button)');
+    forEach.call(inputElements, function(input) {
+        input.oninvalid = validationFail;
+        input.onblur = validate;
+    });
+    
+    document.getElementById('login-button').addEventListener('click', validate, false);
+  });
+</script>
 
 </body>
 
