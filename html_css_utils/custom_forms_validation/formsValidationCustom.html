@@ -1,0 +1,44 @@
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="css.css">
+</head>
+
+<body>
+<form id="change-email-form" name="change-email-form">
+  <input type="text" 
+    name="username" 
+    id="username" 
+    pattern="[a-zA-Z ]{5,}" 
+    maxlength="30" 
+    required
+    placeholder="username"
+    class="form-control">
+            
+  <div class="validation-messages">
+    <span data-rule="valueMissing" class="hide">The username is required.</span>
+    <span data-rule="patternMismatch" class="hide">Alpha characters only (min 5, max 30).</span>
+  </div>
+
+  <input type="email" 
+    id="email" 
+    title="Email address is required" 
+    required
+    placeholder="email address"
+    class="form-control">
+            
+  <div class="validation-messages">
+    <span data-rule="valueMissing" class="hide">An email address is required.</span>
+    <span data-rule="typeMismatch" class="hide">Special characters are not allowed.</span>
+    <span data-rule="isAol" class="hide">Please enter a non-AOL email address :)</span>
+  </div>
+
+  <div class="push-down-top">
+    <button type="button" class="btn btn-link">Cancel</button>
+    <button type="button" id="login-button" class="btn">Login</button>
+  </div>
+</form>
+
+<script type="text/javascript" src="js.js"></script>
+</body>
+
+</html>
