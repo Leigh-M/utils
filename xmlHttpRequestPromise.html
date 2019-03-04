@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<head>
+<script>
+const getFakeMembers = count => new Promise((resolves, rejects) => {
+  const api = `https://api.randomuser.me/?nat=US&results=${count}`;
+  const request = new XMLHttpRequest();
+  request.open('GET', api);
+  request.onload = () => 
+    (request.status === 200) ?
+      resolves(JSON.parse(request.response)) :
+      rejects(Error(request.statusText));
+  request.onerror = err => rejects(err);
+  request.send();
+});
+
+getFakeMembers(5).then(
+  members => console.log(members),
+  err => console.error(new Error('Cannot load members from randomuser.me')),
+);
+</script>
+</head>
+
+<body>
+  Some text, check the console log
+</body>
+</html>

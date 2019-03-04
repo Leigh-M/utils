@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Some Title</title>
+
+<script type="text/javascript">
+  WebFontConfig = {
+    google: {
+      families: ['Roboto Slab:700', 'Roboto:400,400italic,700italic,700'],
+    }
+  };
+
+(function(){
+  var wf = document.createElement('script');
+  wf.src = ('https' == document.location.protocol ? 'https://' : 'http://') + 'ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+  wf.type = 'text/javascript';
+  wf.async = 'true';
+  var firstScript = document.getElementsByTagName('script')[0];
+  s.parentNode.insertBefore(wf, firstScript);
+})();
+
+</script>
+<noscript>
+  <link href='http://fonts.googleapis.com/css?family=Robot+Slab:700|Roboto:400,400italic,700italic,700' rel='stylesheet' type= 'text/css'>
+</noscript>
+
+</head>
+<body>
+  <p>Some text here</p>
+</body>
+</html>
+
+<!--  or:
+(function(d) {
+  var wf = d.createElement('script'), s = d.scripts[0];
+  wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js';
+  s.parentNode.insertBefore(wf, s);
+})(document);
+or if IE9 not important just use:  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js" async></script>
+
+var insertedNode = parentNode.insertBefore(newNode, referenceNode);
+insertedNode The node being inserted, that is newNode
+parentNode The parent of the newly inserted node.
+newNode The node to be inserted.
+referenceNode The node before which newNode is inserted.
+If referenceNode is null, the newNode is inserted at the end of the list of child nodes.
+-->
