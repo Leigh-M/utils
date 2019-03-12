@@ -1,0 +1,68 @@
+{
+  "workbench.activityBar.visible": true,
+  "workbench.sideBar.location": "left",
+  "editor.tabSize": 2,
+  "editor.detectIndentation": false,
+  "editor.wordWrap": "wordWrapColumn",
+  "editor.wordWrapColumn": 98,
+  "html.format.wrapLineLength": 98,
+  "launch" : {
+    "configurations": [
+      {
+        "type": "node",
+        "request": "launch",
+        "name": "Skip Node Internals",
+        "program": "${file}",
+        "skipFiles": [
+          "<node_internals>/**/*.js", "hashKey.js"
+        ]
+      },
+
+  {
+    "type": "node",
+    "request": "launch",
+    "name": "Mocha Tests",
+    "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
+    "args": [
+      "-u",
+      "tdd",
+      "--timeout",
+      "999999",
+      "--colors",
+      "${workspaceFolder}/test/test.js"
+    ],
+    "skipFiles": ["mocha.js", "tdd.js", "bdd.js", "suite.js", "*/lib/test.js", "runnable.js", "utils.js", "debug.js", "events.js", "common.js", "loader.js", "loaders.js", "helpers.js", "runner.js", "spec.js", "base.js", "console.js", "main_thread_only.js", "util.js", "_stream_readable.js", "_stream_writable.js", "timers.js", "_mocha.js", "next_tick.js", "node.js", "async_hooks.js", "types.js", "net.js", "inspector_async_hook.js", "_mocha", "stream_base_commons.js", "fixed_queue.js", "promise.js", "context.js", "promises.js"],
+    "internalConsoleOptions": "openOnSessionStart"
+  },
+  {
+    "type": "chrome",
+    "request": "launch",
+    "name": "Launch Chrome against localhost",
+    "url": "http://localhost:3000/index.html",
+    "webRoot": "${workspaceFolder}/public",
+    "skipFiles": ["pixi.min.js"]
+  },
+    ],
+  },
+  "editor.minimap.maxColumn": 100,
+  "editor.minimap.enabled": false,
+  "explorer.confirmDelete": false,
+  "workbench.statusBar.visible": false,
+  "debug.allowBreakpointsEverywhere": true,
+  "eslint.options": {
+    "env": {
+      "node": true,
+      "es6": true,
+      "browser": true,
+    },
+    "rules": {
+      "no-console": "off",
+      "one-var": "off",
+      "one-var-declaration-per-line": "off",
+      "allowTernary": true,
+      "allowShortCircuit": true,
+    }
+  },
+  "git.confirmSync": false,
+  "window.zoomLevel": 0
+}
