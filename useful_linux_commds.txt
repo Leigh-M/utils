@@ -205,6 +205,8 @@ git branch  -> git branch --list
 
 --> https://www.atlassian.com/git/tutorials/using-branches
 
+To check diffs: git diff HEAD~2
+
 
 ------------------------------------------------
 
