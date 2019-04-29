@@ -208,6 +208,7 @@ git branch  -> git branch --list
 To check diffs: git diff HEAD~2
 
 delete a remote branch, use push with delete flag:   git push origin --delete testleigh
+Then might need to do: git fetch -p origin    to remove the local references to deleted remote branches
 
 
 ------------------------------------------------
