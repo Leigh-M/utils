@@ -207,6 +207,8 @@ git branch  -> git branch --list
 
 To check diffs: git diff HEAD~2
 
+delete a remote branch, use push with delete flag:   git push origin --delete testleigh
+
 
 ------------------------------------------------
 
