@@ -225,4 +225,9 @@ $ sudo python setup.py install
 $ cd uncompyle2
 $ sudo uncompyle2 [compiled].pyc > [decompiled].py
 
+------ 
+
+List processes running: sudo lsof -t -i   or sudo lsof -t -i:3000
+
+Kill process:  sudo kill {the process id}
 
