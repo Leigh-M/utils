@@ -228,6 +228,6 @@ $ sudo uncompyle2 [compiled].pyc > [decompiled].py
 ------ 
 
 List processes running: sudo lsof -t -i   or sudo lsof -t -i:3000
-
-Kill process:  sudo kill {the process id}
+sudo lsof -i -P -n | grep LISTEN    (for ports)
+Kill process:  sudo kill -9 {the process id}    (-9 is force)
 
