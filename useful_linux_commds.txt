@@ -210,6 +210,68 @@ To check diffs: git diff HEAD~2
 delete a remote branch, use push with delete flag:   git push origin --delete testleigh
 Then might need to do: git fetch -p origin    to remove the local references to deleted remote branches
 
+Git
+Git config —list
+git config —global user.name “my name”
+git config —global user.email le@l.com
+
+git status
+git diff (changed not staged)
+git diff —staged Staged not committed
+git commit
+-m ‘some story’
+-a -m ‘skips the add staging’
+
+rm somefile
+git rm somefile
+Commit
+
+To rm a file from git but keep it in folder, add to gitignore then git rm -r --cached "path/to/ignored/directories"
+
+git rm —cached to keep file but untrack
+
+git mv afile another file (renames it)
+
+git log
+-p -2
+—stat
+—pretty=oneline|full fuller format
+
+—pretty=format:”%h %s” —graph
+
+git reflog —date=local branchName
+Gives when branch created
+
+—since=2.weeks
+=“2008-01-15”
+=“1 year 2 weeks 1 day ago”
+=until
+git branch —all or -a. The remote brnchs
+
+Git commit —amend (make additional change to last commit)
+
+Gitk
+git remote
+
+git reset HEAD file to unstage
+git checkout — file to discard changes
+
+git remote -v
+git remote add aRem “git://url”
+To add a remote, git fetch aRem it’s locally known as aRem/master ?
+
+git branch BrName
+git checkout BrName
+
+= git checkout -b BrName
+
+To delete a remote branch:
+git push --delete origin i18n_libs_test 
+git fetch --prune
+
+To delete a local branch:
+git branch -D i18n_libs_test   (-d won't force if not fully merged, -D forces)
+
 
 ------------------------------------------------
 
