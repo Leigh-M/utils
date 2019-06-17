@@ -293,3 +293,9 @@ List processes running: sudo lsof -t -i   or sudo lsof -t -i:3000
 sudo lsof -i -P -n | grep LISTEN    (for ports)
 Kill process:  sudo kill -9 {the process id}    (-9 is force)
 
+-----------------
+
+Virtualenv:  virtualenv -p /usr/bin/python3.6 localstackenv
+source localstackenv/bin/activate
+
+
