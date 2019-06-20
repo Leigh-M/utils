@@ -298,4 +298,9 @@ Kill process:  sudo kill -9 {the process id}    (-9 is force)
 Virtualenv:  virtualenv -p /usr/bin/python3.6 localstackenv
 source localstackenv/bin/activate
 
+Ubuntu server, root user:  crontab -e
+@reboot npm start --prefix /home/ubuntu/kinesisinsight;
+@reboot npm start --prefix /home/ubuntu/kinesisinsight/charts-cli;
+
+
 
