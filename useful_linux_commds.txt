@@ -302,5 +302,6 @@ Ubuntu server, root user:  crontab -e
 @reboot npm start --prefix /home/ubuntu/kinesisinsight;
 @reboot npm start --prefix /home/ubuntu/kinesisinsight/charts-cli;
 
-
-
+sam package --template-file template2.yaml --s3-bucket vision-man-deploy --output-template-file packaged-template2.yaml
+sam deploy --template-file /home/leighm/projects/vision/packaged-template2.yaml --stack-name vision-man-deployed --capabilities CAPABILITY_NAMED_IAM
+aws cloudformation delete-stack --stack-name vision-man-deployed
