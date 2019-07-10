@@ -305,3 +305,67 @@ Ubuntu server, root user:  crontab -e
 sam package --template-file template2.yaml --s3-bucket vision-man-deploy --output-template-file packaged-template2.yaml
 sam deploy --template-file /home/leighm/projects/vision/packaged-template2.yaml --stack-name vision-man-deployed --capabilities CAPABILITY_NAMED_IAM
 aws cloudformation delete-stack --stack-name vision-man-deployed
+
+ ----------------------------------
+ 
+    Video
+ ---------
+leighm ~ $ v4l2-ctl --list-devices
+Failed to open /dev/video0: Permission denied
+
+leighm ~ $ sudo v4l2-ctl --list-devices
+
+Integrated_Webcam_HD: Integrate (usb-0000:00:14.0-11):
+/dev/video0
+/dev/video1
+
+Video issues:
+sudo setfacl -m u:[insert username]:rw /dev/video0 /dev/video1
+
+  ------------------------ 
+
+
+
+  Wired Network Connection
+  ------------------------
+ip link set dev eth0 up
+
+ip link show
+
+sudo nano /etc/NetworkManager/NetworkManager.conf
+sudo service network-manager restart
+
+
+main command:  sudo dhclient eth0
+
+To automate:  from here: https://askubuntu.com/questions/193074/have-to-run-sudo-dhclient-eth0-automatically-every-boot)
+sudo nano /etc/network/interfaces
+
+And add:
+auto eth0
+iface eth0 inet dhcp
+
+
+
+current settings:
+leighm ~ $ cat /etc/network/interfaces
+# interfaces(5) file used by ifup(8) and ifdown(8)
+auto lo
+iface lo inet loopback
+
+(http://ubuntuguide.net/fix-cannot-connect-to-wired-internet-problem-in-ubuntu-or-ubuntu-vmware-guest)
+Suggested:
+# The loopback network interface
+
+auto lo
+
+iface lo inet loopback
+
+# The primary network interface
+
+auto eth0
+
+iface eth0 inet dhcp
+ -------------------------------
+ 
+ 
