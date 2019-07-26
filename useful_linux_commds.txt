@@ -739,3 +739,10 @@ VSCode launch config
     },
     "git.enableSmartCommit": true,
 }
+
+--------------------------------
+Docker:
+```docker container ls --all```
+       // you'll see  status  up   on the container still running  (that wasn't successfully stopped)
+Then:  
+```docker stop --CONTAINERID```
