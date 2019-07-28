@@ -280,6 +280,10 @@ Git rebase workflow - using WIP naming convention - this rewinds changes so it a
    git push -f          
         This force pushes the rebased changes to origin
 
+To undo a   git reset HEAD~1    check the reflogs
+But basically as per: 
+  https://stackoverflow.com/questions/2510276/how-to-undo-git-reset 
+    git reset HEAD@{1}     (or the number required to step back)
 
 ------------------------------------------------
 
