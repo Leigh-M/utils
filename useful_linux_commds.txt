@@ -754,3 +754,10 @@ Docker:
        // you'll see  status  up   on the container still running  (that wasn't successfully stopped)
 Then:  
 ```docker stop --CONTAINERID```
+
+--------------------------------
+
+Restart wired network connection:
+   tp turn off eth0:    ifdown eth0  (will prob restart anyway from there)
+   or if not change to up:   ifup eth0
+
