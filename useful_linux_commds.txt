@@ -274,6 +274,8 @@ git branch -D i18n_libs_test   (-d won't force if not fully merged, -D forces)
 
 
 Git rebase workflow - using WIP naming convention - this rewinds changes so it appears all added to same WIP commit, then you can apply all the changes to the same commit.  and keep  ticket numbers associated with 1 commit 
+
+   // not 100% sure how to use this following rebase command, as   git reset HEAD~1 then git push -f works well?
    git rebase origin/dev
    git reset HEAD~1
         (Stage your changes with commit name WIP just for naming convention)
