@@ -810,3 +810,30 @@ Restart wired network connection:
    tp turn off eth0:    ifdown eth0  (will prob restart anyway from there)
    or if not change to up:   ifup eth0
 
+-------------------------------------
+const fetch = require('node-fetch');
+
+const retArr = [];
+
+const res1 = [1, 2, 3];
+const res2 = [4, 5, 6];
+
+const resProm = () => Promise.resolve(res1).then(
+  res => [...retArr, ...res],
+).catch((err) => { throw err; });
+
+// const re = resProm();
+
+/*
+resProm().then((result) => {
+  console.log(result);
+}).catch((err) => {
+  console.log(err);
+});
+*/
+
+fetch('https://jsonplaceholder.typicode.com/todos/1').then(
+  res => res.json(),
+).then(json => console.log(json));
+
+// was going to do array external and just add the results to that
