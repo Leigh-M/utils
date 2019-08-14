@@ -837,3 +837,22 @@ fetch('https://jsonplaceholder.typicode.com/todos/1').then(
 ).then(json => console.log(json));
 
 // was going to do array external and just add the results to that
+
+ -------------------
+
+rebase:
+
+save the branch by checking out another one: 
+  git branch backup
+
+check it:  git branch
+
+git log --oneline
+
+// I think grab the commit before it?
+git rebase -i 1073705
+
+git add .
+git status
+git commit --amend
+git rebase --continue
