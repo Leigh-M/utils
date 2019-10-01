@@ -900,3 +900,8 @@ const tot = [...total[0], ...total[1]];
 console.log(tot);
 
 ------------------------------
+
+copy a file SSH from server:  
+using screen   sudo apt install screen   sudo screen
+Ctrl-a to switch    Ctrl-d  to kill
+scp -i /home/leigh-someUsr/.ssh/someproject-test.pem ubuntu@10.someIP:~/someFile-in-home-dir.tar /home/leighm
