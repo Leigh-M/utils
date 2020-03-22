@@ -379,6 +379,9 @@ Integrated_Webcam_HD: Integrate (usb-0000:00:14.0-11):
 Video issues:
 sudo setfacl -m u:[insert username]:rw /dev/video0 /dev/video1
 
+or could do: sudo chmod 777 /dev/video0
+             sudo chmod 777 /dev/video1
+
   ------------------------ 
 
 
