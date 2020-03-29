@@ -908,3 +908,33 @@ copy a file SSH from server:
 using screen   sudo apt install screen   sudo screen
 Ctrl-a to switch    Ctrl-d  to kill
 scp -i /home/leigh-someUsr/.ssh/someproject-test.pem ubuntu@10.someIP:~/someFile-in-home-dir.tar /home/leighm
+
+ ------------------- 
+ 
+ report git branch terminal command line: 
+ 
+ # david recommend the below lines, including the export PSU1 line - for reporting current branch
+parse_git_branch() {
+      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+    hg branch 2> /dev/null | awk '{ print " hg (" $1 ")" }'
+ }
+
+
+# david recommended the below for stashing: parse git or hg branch name and stash number
+parse_git_branch() {
+  if git ls-files >& /dev/null; then
+    branch=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
+    stash_num=$(git stash list | grep "$branch" | wc -l)
+    if [ "$stash_num" = 0 ]; then
+      echo "(${branch})"
+    else
+      echo "(${branch}) ${stash_num}"
+    fi  
+  elif [ -d .hg ]; then
+    hg branch 2> /dev/null | awk '{ print " hg (" $1 ")" }'
+  fi  
+}
+
+ ----------------- 
+ 
+ 
