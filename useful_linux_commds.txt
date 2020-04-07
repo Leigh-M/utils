@@ -937,4 +937,8 @@ parse_git_branch() {
 
  ----------------- 
  
+ Amend git name email locally
+ git config --local user.email "leigh.mathieson@gmail.com"
+ git config --local user.name "Leigh-M"
+
  
