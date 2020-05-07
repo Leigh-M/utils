@@ -941,4 +941,9 @@ parse_git_branch() {
  git config --local user.email "leigh.mathieson@gmail.com"
  git config --local user.name "Leigh-M"
 
- 
+  ---- 
+  
+  ls -l  // list folders/ files with permissions
+  ls -la  // including hidden files 
+  
+ -------------
