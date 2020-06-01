@@ -947,3 +947,8 @@ parse_git_branch() {
   ls -la  // including hidden files 
   
  -------------
+ 
+ resize jpg jpeg image:  jpegoptim --size=400k --dest ~/Desktop/Images_2/ Windy_Bank_side_view.JPEG
+ 
+ ------------- 
+  
