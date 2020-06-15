@@ -952,3 +952,14 @@ parse_git_branch() {
  
  ------------- 
   
+  check if git pull / merge fast forward is possible: 
+  
+git fetch
+git checkout -b tmp_branch master
+git merge origin/master --ff
+
+git branch -D tmp_branch
+
+ ----------- 
+
+
