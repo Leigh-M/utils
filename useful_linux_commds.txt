@@ -962,4 +962,26 @@ git branch -D tmp_branch
 
  ----------- 
 
+Add nvm nodejs npm to userdata script for EC2
+
+#!/bin/bash
+
+# update packages
+yum update -y
+
+# install nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+# install node 12
+nvm install 12
+
+# make avail for ec2-user (use ubuntu for ubuntu server) as well as root
+cat <<EOF >> /home/ec2-user/.bashrc
+export NVM_DIR="/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+EOF
+
+ -------------
 
