@@ -985,3 +985,8 @@ EOF
 
  -------------
 
+delete remotes/origin branch   refs
+git push origin --delete error-changes
+
+ -----------
+ 
