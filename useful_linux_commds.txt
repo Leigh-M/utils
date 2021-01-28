@@ -911,7 +911,24 @@ scp -i /home/leigh-someUsr/.ssh/someproject-test.pem ubuntu@10.someIP:~/someFile
 
  ------------------- 
  
- report git branch terminal command line: 
+report git branch terminal command line and git stash status:
+ 
+# david recommended the below for stashing: parse git or hg branch name and stash number
+parse_git_branch() {
+  if git ls-files >& /dev/null; then
+    branch=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
+    stash_num=$(git stash list | grep "$branch" | wc -l)
+    if [ "$stash_num" = 0 ]; then
+      echo "(${branch})"
+    else
+      echo "(${branch}) ${stash_num}"
+    fi  
+  elif [ -d .hg ]; then
+    hg branch 2> /dev/null | awk '{ print " hg (" $1 ")" }'
+  fi  
+}
+
+export PS1="\u@\h\[\e[32m\]\w\[\e[94m\]\$(parse_git_branch)\[\e[00m\]$ "
  
  # david recommend the below lines, including the export PSU1 line - for reporting current branch
 parse_git_branch() {
