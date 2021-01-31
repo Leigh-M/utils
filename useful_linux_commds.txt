@@ -1007,3 +1007,441 @@ git push origin --delete error-changes
 
  -----------
  
+ launch config:
+ 
+ {
+    "files.autoSave": "onFocusChange",
+    "window.zoomLevel": 1,
+    "yaml.customTags": [
+      "!And",
+      "!And sequence",
+      "!If",
+      "!If sequence",
+      "!Not",
+      "!Not sequence",
+      "!Equals",
+      "!Equals sequence",
+      "!Or",
+      "!Or sequence",
+      "!FindInMap",
+      "!FindInMap sequence",
+      "!Base64",
+      "!Join",
+      "!Join sequence",
+      "!Cidr",
+      "!Ref",
+      "!Sub",
+      "!Sub sequence",
+      "!GetAtt",
+      "!GetAZs",
+      "!ImportValue",
+      "!ImportValue sequence",
+      "!Select",
+      "!Select sequence",
+      "!Split",
+      "!Split sequence"
+    ],
+    "yaml.validate": false,
+    "aws.profile": "profile:default",
+    "aws.onDefaultRegionMissing": "add",
+    "explorer.confirmDelete": false,
+    "launch": {
+        "configurations": [
+            {
+                "type": "node",
+                "request": "launch",
+                "name": "TS ./dist/file",
+                "program": "${file}",
+                "outFiles": ["${workspaceFolder}/dist/**/*.js"],
+                "skipFiles": [
+                    "<node_internals>/**", "node_modules",
+                  ]
+            },
+            {
+                "type": "node",
+                "request": "launch",
+                "name": "TS preLaunchTask-build-PLACE-IN-LOCAL-FOLDER",
+                "program": "${file}",
+                "preLaunchTask": "myTask",
+                "outFiles": ["${workspaceFolder}/dist/**/*.js"],
+                "skipFiles": [
+                    "<node_internals>/**", "node_modules",
+                  ]
+            },
+            {
+                "name": "ts-node example",
+                "type": "node",
+                "request": "launch",
+                "runtimeExecutable": "node",
+                "runtimeArgs": ["--nolazy", "-r", "ts-node/register/transpile-only"],
+                "args": ["src/index.ts", "--example", "hello"],
+                "cwd": "${workspaceRoot}",
+                "internalConsoleOptions": "openOnSessionStart",
+                "skipFiles": ["<node_internals>/**", "node_modules"],
+                "env": { "TS_NODE_PROJECT": "<tsconfig.json>" }
+            },
+            {
+                "type": "node",
+                "request": "launch",
+                "name": "Jest All",
+                "program": "${workspaceFolder}/node_modules/.bin/jest",
+                "args": ["--runInBand"],
+                "console": "integratedTerminal",
+                "internalConsoleOptions": "neverOpen",
+                "disableOptimisticBPs": true,
+                "windows": {
+                  "program": "${workspaceFolder}/node_modules/jest/bin/jest",
+                },
+                "skipFiles": [
+                  "<node_internals>/**/*.js", "node_modules",
+                ]
+              },
+              {
+                "type": "node",
+                "request": "launch",
+                "name": "Jest Current File",
+                "program": "${workspaceFolder}/node_modules/.bin/jest",
+                "args": [
+                  "${fileBasenameNoExtension}",
+                  "--config",
+                  "jest.config.js"
+                ],
+                "console": "integratedTerminal",
+                "internalConsoleOptions": "neverOpen",
+                "disableOptimisticBPs": true,
+                "windows": {
+                  "program": "${workspaceFolder}/node_modules/jest/bin/jest",
+                },
+                "skipFiles": [
+                  "<node_internals>/**/*.js", "node_modules",
+                ]
+              },
+              {
+                "name": "Attach to SAM src",
+                "type": "node",
+                "request": "attach",
+                "address": "localhost",
+                "port": 5858,
+                // From the sam init example, it would be "${workspaceRoot}/hello_world"
+                "localRoot": "${workspaceRoot}",
+                "remoteRoot": "/var/task",
+                "protocol": "inspector",
+                "stopOnEntry": true,
+                "skipFiles": [
+                  "<node_internals>/**/*.js", "node_modules/aws-sdk", "node_modules/awslambda"
+                ]
+              },
+              {
+                "name": "Attach to SAM CLI with .aws-sam/build",
+                "type": "node",
+                "request": "attach",
+                "address": "localhost",
+                "port": 5858,
+                // From the sam init example, it would be "${workspaceRoot}/hello_world"
+                "localRoot": "${workspaceRoot}/vision/.aws-sam/build/listDeviceMap",
+                "remoteRoot": "/var/task",
+                "protocol": "inspector",
+                "stopOnEntry": true,
+                "skipFiles": [
+                  "<node_internals>/**/*.js", "node_modules/aws-sdk", "node_modules/awslambda"
+                ]
+              },
+              {
+                "name": "Attach to SAM CLI - standard workspace root",
+                "type": "node",
+                "request": "attach",
+                "address": "localhost",
+                "port": 5858,
+                // From the sam init example, it would be "${workspaceRoot}/hello_world"
+                "localRoot": "${workspaceRoot}/sam-app/hello_world",
+                "remoteRoot": "/var/task",
+                "protocol": "inspector",
+                "stopOnEntry": true
+              },
+              {
+                "type": "node",
+                "request": "launch",
+                "name": "Skip Node Internals",
+                "program": "${file}",
+                "skipFiles": [
+                  "<node_internals>/**/*.js", "hashKey.js", "i18next.js"
+                ]
+              },
+              {
+                "type": "node",
+                "request": "launch",
+                "name": "Jest Tests - wasn;t working on Vision",
+                "program": "${workspaceRoot}/node_modules/jest/bin/jest.js",
+                "args": [
+                    "-i"
+                ],
+                 "skipFiles": [
+                  "<node_internals>/**/*.js", "node_modules",
+                ]
+              },
+              {
+                "type": "node",
+                "request": "launch",
+                "name": "Jest Tests Desktop Folder - does attach for Vision in exact test folder?",
+                "program": "/usr/lib/node_modules/jest/bin/jest.js",
+                "args": [
+                    "-i"
+                ],
+                 "skipFiles": [
+                  "<node_internals>/**/*.js", "node_modules", "index.js"
+                ] 
+              },
+              
+              {
+                "type": "node",
+                "request": "launch",
+                "name": "Experimental Modules",
+                "program": "/home/leighm/projects/i18n_phraseapp/node-i18n-example/index.mjs",
+                "runtimeArgs": [
+                    "--experimental-modules"
+                ],
+                "skipFiles": [
+                  "<node_internals>/**/*.js", "hashKey.js", "module_job.js", 
+                ]
+              },
+              {
+                "type": "node",
+                "request": "launch",
+                "name": "debug_vehicle_performance",
+                "program": "${workspaceFolder}/template-formatter/vehicle-performance/app.js",
+                "args": [
+                    "--jsonPath=charts-cli/jsons/201910_50565_Vehicle_Performance_Table.json","--summaryJsonPath=charts-cli/jsons/201910_50565_SummaryScore.json","--customerId=50565"
+                ],
+                "skipFiles": [
+                  "<node_internals>/**/*.js", "graceful-fs.js", "lodash.js", "polyfill.js", "Translator.js", "i18next.js", "typeof.js", "LanguageUtils.js", "PluralResolver.js", "logger.js", "ResourceStore.js", "utils.js", "Interpolator.js", "objectSpread.js", "defineProperty.js", "VM193.js"
+                ]
+              },
+              {
+                "type": "node",
+                "request": "launch",
+                "name": "debug_vehicle_performance_NEW",
+                "program": "${workspaceFolder}/template-formatter/vehicle-performance/app.NEW.js",
+                "args": [
+                    "--jsonPath=charts-cli/jsons/201910_50565_Vehicle_Performance_Table.json","--summaryJsonPath=charts-cli/jsons/201910_50565_SummaryScore.json","--customerId=50565"
+                ],
+                "skipFiles": [
+                  "<node_internals>/**/*.js", "graceful-fs.js", "lodash.js", "polyfill.js", "Translator.js", "i18next.js", "typeof.js", "LanguageUtils.js", "PluralResolver.js", "logger.js", "ResourceStore.js", "utils.js", "Interpolator.js", "objectSpread.js", "defineProperty.js", "VM193.js"
+                ]
+              },
+              {
+                "type": "node",
+                "request": "launch",
+                "name": "debug_fleet-utilisation-summary",
+                "program": "${workspaceFolder}/template-formatter/fleet-utilisation-summary/app.js",
+                "args": [
+                    "--jsonPath=charts-cli/jsons/201910_50565_Fleet_Utilisation_Table.json","--summaryJsonPath=charts-cli/jsons/201910_50565_SummaryScore.json","--customerId=50565"
+                ],
+                "skipFiles": [
+                  "<node_internals>/**/*.js", "graceful-fs.js", "lodash.js", "i18next.js", "polyfill.js", "translator.js"
+                ]
+              },
+              {
+                "type": "node",
+                "request": "launch",
+                "name": "debug_vehicle_utilisation_Generator.js",
+                "program": "${workspaceFolder}/charts-cli/vehicleutilisationGenerator.js",
+                "args": [
+                    "--summaryJsonPath=charts-cli/jsons/201910_50565_SummaryScore.json",
+                    "--id=50565",
+                    "--dataFilePath=../data/201910_50565_Fleet_Utilisation_Chart.json",
+                    "--dirPath=charts-cli/screenshots"
+                ],
+                "skipFiles": [
+                  "<node_internals>/**/*.js", "graceful-fs.js", "lodash.js", "i18next.js", "polyfill.js", "translator.js"
+                ]
+              },
+              {
+                "type": "node",
+                "request": "launch",
+                "name": "debug_fleet-utilisation",
+                "program": "${workspaceFolder}/template-formatter/fleet-utilisation/app.js",
+                "args": [
+                    "--jsonPath=charts-cli/jsons/201910_50565_Fleet_Utilisation_Chart.json","--summaryJsonPath=charts-cli/jsons/201910_50565_SummaryScore.json","--customerId=50565"
+                ],
+                "skipFiles": [
+                  "<node_internals>/**/*.js", "graceful-fs.js", "lodash.js", "i18next.js", "polyfill.js", "translator.js"
+                ]
+              },
+              {
+                "type": "node",
+                "request": "launch",
+                "name": "debug_alerts",
+                "program": "${workspaceFolder}/template-formatter/alerts/app.js",
+                "args": [
+                    "--jsonPath=charts-cli/jsons/201910_50565_InsightAlertData.json","--summaryJsonPath=charts-cli/jsons/201910_50565_SummaryScore.json","--customerId=50565"
+                ],
+                "skipFiles": [
+                  "<node_internals>/**/*.js", "graceful-fs.js", "lodash.js", "i18next.js", "polyfill.js", "translator.js"
+                ]
+              },
+              {
+                "type": "node",
+                "request": "launch",
+                "name": "debug_driver_performance",
+                "program": "${workspaceFolder}/template-formatter/driver-performance/app.js",
+                "args": [
+                    "--jsonPath=charts-cli/jsons/201910_50565_fleetSummaryTable.json","--summaryJsonPath=charts-cli/jsons/201910_50565_SummaryScore.json","--customerId=50565"
+                ],
+                "skipFiles": [
+                  "<node_internals>/**/*.js", "graceful-fs.js", "lodash.js", "i18next.js", "polyfill.js", "translator.js"
+                ]
+              },
+              {
+                "type": "node",
+                "request": "launch",
+                "name": "debug_driver_performance_summary",
+                "program": "${workspaceFolder}/template-formatter/driver-performance-summary/app.js",
+                "args": [
+                    "--jsonPath=charts-cli/jsons/201910_50565_fleetSummaryTable.json","--summaryJsonPath=charts-cli/jsons/201910_50565_SummaryScore.json","--customerId=50565"
+                ],
+                "skipFiles": [
+                  "<node_internals>/**/*.js", "graceful-fs.js", "lodash.js", "i18next.js", "polyfill.js", "translator.js"
+                ]
+              },
+              {
+                "type": "node",
+                "request": "launch",
+                "name": "debug_cover_page",
+                "program": "${workspaceFolder}/template-formatter/cover-page/app.js",
+                "args": [
+                    "--jsonPath=charts-cli/jsons/201910_50565_SummaryScore.json","--summaryJsonPath=charts-cli/jsons/201910_50565_SummaryScore.json","--customerId=50565"
+                ], 
+                "skipFiles": [
+                  "<node_internals>/**/*.js", "graceful-fs.js", "lodash.js", "i18next.js", "polyfill.js", "translator.js"
+                ]
+              },
+              {
+                "type": "node",
+                "request": "launch",
+                "name": "debug_map_view",
+                "program": "${workspaceFolder}/template-formatter/map-view/app.js",
+                "args": [
+                    "--jsonPath=charts-cli/jsons/201910_50565_mapRoutesChart.json","--summaryJsonPath=charts-cli/jsons/201910_50565_SummaryScore.json","--customerId=50565"
+                ], 
+                "skipFiles": [
+                  "<node_internals>/**/*.js", "graceful-fs.js", "lodash.js", "i18next.js", "polyfill.js", "translator.js"
+                ]
+              },
+              {
+                "type": "node",
+                "request": "launch",
+                "name": "debug_geo-plus",
+                "program": "${workspaceFolder}/template-formatter/geo-plus/app.js",
+                "args": [
+                    "--jsonPath=charts-cli/jsons/201910_50565_geoPlusUnusualTransactionsTable.json","--summaryJsonPath=charts-cli/jsons/201910_50565_SummaryScore.json","--customerId=50565"
+                ],
+                "skipFiles": [
+                  "<node_internals>/**/*.js", "graceful-fs.js", "lodash.js", "i18next.js", "polyfill.js", "translator.js"
+                ]
+              },
+              {
+                "type": "node",
+                "request": "launch",
+                "name": "debug_geo-plus2",
+                "program": "${workspaceFolder}/template-formatter/geo-plus/app.OLD_working.js",
+                "args": [
+                    "--jsonPath=charts-cli/jsons/201910_50565_geoPlusUnusualTransactionsTable.json","--summaryJsonPath=charts-cli/jsons/201910_50565_SummaryScore.json","--customerId=50565"
+                ],
+                "skipFiles": [
+                  "<node_internals>/**/*.js", "graceful-fs.js", "lodash.js", "i18next.js", "polyfill.js", "translator.js"
+                ]
+              },
+              {
+                "type": "node",
+                "request": "launch",
+                "name": "debug_index_page",
+                "program": "${workspaceFolder}/template-formatter/index-page/app.js",
+                "args": [
+                    "--jsonPath=charts-cli/jsons/201910_50565_SummaryScore.json","--summaryJsonPath=charts-cli/jsons/201910_50565_SummaryScore.json","--customerId=50565"
+                ], 
+                "skipFiles": [
+                  "<node_internals>/**/*.js", "graceful-fs.js", "lodash.js", "i18next.js", "polyfill.js", "translator.js"
+                ]
+              },
+              {
+                "type": "node",
+                "request": "launch",
+                "name": "Mocha Tests",
+                "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
+                "args": [
+                  "-u",
+                  "tdd",
+                  "--timeout",
+                  "999999",
+                  "--colors",
+                  "${workspaceFolder}/test/test.js"
+                ],
+                "skipFiles": ["mocha.js", "tdd.js", "bdd.js", "suite.js", "*/lib/test.js", "runnable.js", "utils.js", "debug.js", "events.js", "common.js", "loader.js", "loaders.js", "helpers.js", "runner.js", "spec.js", "base.js", "console.js", "main_thread_only.js", "util.js", "_stream_readable.js", "_stream_writable.js", "timers.js", "_mocha.js", "next_tick.js", "node.js", "async_hooks.js", "types.js", "net.js", "inspector_async_hook.js", "_mocha", "stream_base_commons.js", "fixed_queue.js", "promise.js", "context.js", "promises.js"],
+                "internalConsoleOptions": "openOnSessionStart"
+              },
+              {
+                "type": "chrome",
+                "request": "launch",
+                "name": "Launch Chrome against localhost 3000",
+                "url": "http://localhost:3000",
+                "webRoot": "${workspaceFolder}",
+                "skipFiles": [
+                  "<node_internals>/**/*.js", "hashKey.js", "i18next.js", "react-dom.production.min.js", "react.production.min.js"
+                ]
+              },
+              {
+                "type": "chrome",
+                "request": "launch",
+                "name": "Launch Chrome against localhost 3011",
+                "url": "http://localhost:3011/charts/vehicleUtilisation.de-de.html?dataFilePath=',../data/201910_50565_Fleet_Utilisation_Chart.json'",
+                "webRoot": "${workspaceFolder}",
+              },
+              {
+                "name": "Attach",
+                "type": "chrome",
+                "request": "attach",
+                "port": 3011,
+                "url": "http://localhost:3011charts-cli/vehicleutilisationGenerator.js",
+                "webRoot": "${workspaceFolder}",
+              },
+              {
+                "name": "Python: Launch - specific folder - currently main.py",
+                "type": "python",
+                "request": "launch",
+                "program": "${workspaceFolder}/kinesisinsight/main.py",
+                "console": "integratedTerminal",
+                "stopOnEntry": true
+              },
+              {
+                "name": "Python: Launch - Current File",
+                "type": "python",
+                "request": "launch",
+                "program": "${file}",
+                "console": "integratedTerminal",
+                "stopOnEntry": true,
+                "args": [
+                  "--include=1000416_2205020280001",
+                  "--isoweek=201915"
+                ]
+              },
+              {
+                "name": "Python: Attach - Current File",
+                "type": "python",
+                "request": "attach",
+                "port": 8001
+              },
+              {
+                "type": "chrome",
+                "request": "launch",
+                "name": "Velocity - Chrome localhost 8000",
+                "url": "http://localhost:8000",
+                "webRoot": "${workspaceFolder}",
+                "skipFiles": [
+                  "<node_internals>/**/*.js", "hashKey.js", "i18next.js", "react-dom.production.min.js", "react.production.min.js", "react-dom.development.js", "node_modules", "VM110", "babel-runtime/node_modules/regenerator-runtime/runtime.js", "redux-api-middleware/lib/middleware.js"
+                ]
+              },
+        ],
+        "compounds": []
+    }
+}
+ 
