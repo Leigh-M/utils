@@ -1444,4 +1444,14 @@ git push origin --delete error-changes
         "compounds": []
     }
 }
+
+ -------------------------
  
+ Set default input or putput sound source
+ 
+ pactl list short sources
+ pactl set-default-source 'alsa_input.usb-Plantronics_Plantronics_Blackwire_3225_Series_C9AF7567616241CEB84D629CB25EC922-00.analog-stereo'
+ 
+ -------------------------
+
+
